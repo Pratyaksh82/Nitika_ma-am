@@ -4,6 +4,14 @@ A publication-grade, interactive Decision Intelligence System for PhD Thesis Def
 """
 
 import os
+import sys
+from pathlib import Path
+
+# Ensure project root is in sys.path across all platforms (Render, Linux, Docker, Windows)
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 import joblib
 import numpy as np
 import pandas as pd
@@ -414,9 +422,9 @@ st.markdown("""
 
 @st.cache_resource
 def load_cached_artifacts():
-    model_path = 'models/xgboost_model.joblib'
+    model_path = os.path.join(ROOT_DIR, 'models', 'xgboost_model.joblib')
     if not os.path.exists(model_path):
-        model_path = 'models/best_rainfall_model.joblib'
+        model_path = os.path.join(ROOT_DIR, 'models', 'best_rainfall_model.joblib')
     
     artifact = joblib.load(model_path)
     model = artifact['model']
@@ -424,7 +432,7 @@ def load_cached_artifacts():
     benchmark_results = artifact.get('benchmark_results', [])
     explainer = shap.TreeExplainer(model)
 
-    data_path = 'data/processed/features_matrix.parquet'
+    data_path = os.path.join(ROOT_DIR, 'data', 'processed', 'features_matrix.parquet')
     if os.path.exists(data_path):
         df_feat = pd.read_parquet(data_path)
     else:
@@ -1062,11 +1070,13 @@ with tab_xai:
     st.subheader("🌐 Global TreeSHAP Model Insights")
     g1, g2 = st.columns(2)
     with g1:
-        if os.path.exists('outputs/shap_summary_beeswarm.png'):
-            st.image('outputs/shap_summary_beeswarm.png', caption="Global TreeSHAP Feature Impact (1,000 Holdout Samples)", use_container_width=True)
+        img1 = os.path.join(ROOT_DIR, 'outputs', 'shap_summary_beeswarm.png')
+        if os.path.exists(img1):
+            st.image(img1, caption="Global TreeSHAP Feature Impact (1,000 Holdout Samples)", use_container_width=True)
     with g2:
-        if os.path.exists('outputs/shap_feature_importance.png'):
-            st.image('outputs/shap_feature_importance.png', caption="Mean Absolute Feature Importance (|SHAP Value| in mm)", use_container_width=True)
+        img2 = os.path.join(ROOT_DIR, 'outputs', 'shap_feature_importance.png')
+        if os.path.exists(img2):
+            st.image(img2, caption="Mean Absolute Feature Importance (|SHAP Value| in mm)", use_container_width=True)
 
 
 # ------------------ TAB 4: RUSLE SOIL PHYSICS ------------------

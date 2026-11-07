@@ -1,2 +1,2 @@
-web: streamlit run app/dashboard.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+web: python -m streamlit run app/dashboard.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
 
