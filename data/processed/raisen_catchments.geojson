@@ -1,0 +1,429 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "RAISEN_DISTRICT_BOUNDARY",
+      "properties": {
+        "name": "Raisen District Hydrological Perimeter",
+        "type": "District Boundary",
+        "state": "Madhya Pradesh",
+        "basin": "Betwa - Narmada Inter-Basin Corridor",
+        "total_area_sqkm": 8395
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4,
+              23.15
+            ],
+            [
+              77.28,
+              23.38
+            ],
+            [
+              77.28,
+              23.75
+            ],
+            [
+              77.6,
+              23.78
+            ],
+            [
+              78.18,
+              23.78
+            ],
+            [
+              78.48,
+              23.76
+            ],
+            [
+              78.62,
+              23.44
+            ],
+            [
+              78.68,
+              23.2
+            ],
+            [
+              78.7,
+              22.95
+            ],
+            [
+              78.42,
+              22.76
+            ],
+            [
+              78.1,
+              22.75
+            ],
+            [
+              77.95,
+              22.88
+            ],
+            [
+              77.68,
+              23.16
+            ],
+            [
+              77.48,
+              23.12
+            ],
+            [
+              77.4,
+              23.15
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RAISEN",
+      "properties": {
+        "name": "Raisen Headquarters Catchment",
+        "tehsil_code": "RAISEN",
+        "river_basin": "Upper Betwa River Basin",
+        "area_sqkm": 1185,
+        "dominant_soil": "Deep Vertisol (Black Clay)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62,
+              23.46
+            ],
+            [
+              77.88,
+              23.48
+            ],
+            [
+              77.96,
+              23.35
+            ],
+            [
+              77.92,
+              23.18
+            ],
+            [
+              77.68,
+              23.16
+            ],
+            [
+              77.6,
+              23.28
+            ],
+            [
+              77.62,
+              23.46
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BHOPAL",
+      "properties": {
+        "name": "Bhopal Border Watershed",
+        "tehsil_code": "BHOPAL",
+        "river_basin": "Kaliasot - Halali Catchment",
+        "area_sqkm": 840,
+        "dominant_soil": "Clay Loam Plateau"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.28,
+              23.38
+            ],
+            [
+              77.58,
+              23.42
+            ],
+            [
+              77.6,
+              23.22
+            ],
+            [
+              77.48,
+              23.12
+            ],
+            [
+              77.26,
+              23.18
+            ],
+            [
+              77.28,
+              23.38
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BERASIA",
+      "properties": {
+        "name": "Berasia Northern Watershed",
+        "tehsil_code": "BERASIA",
+        "river_basin": "Halali - Bah River Catchment",
+        "area_sqkm": 920,
+        "dominant_soil": "Medium Vertisol"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.28,
+              23.75
+            ],
+            [
+              77.6,
+              23.78
+            ],
+            [
+              77.65,
+              23.5
+            ],
+            [
+              77.38,
+              23.45
+            ],
+            [
+              77.25,
+              23.58
+            ],
+            [
+              77.28,
+              23.75
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "GHAIRATGANJ",
+      "properties": {
+        "name": "Ghairatganj Vindhyan Basin",
+        "tehsil_code": "GHAIRATGANJ",
+        "river_basin": "Bina - Baigun Sub-Basin",
+        "area_sqkm": 1045,
+        "dominant_soil": "Vindhyan Loam / Stony Clay"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.9,
+              23.56
+            ],
+            [
+              78.22,
+              23.55
+            ],
+            [
+              78.26,
+              23.32
+            ],
+            [
+              77.98,
+              23.3
+            ],
+            [
+              77.9,
+              23.42
+            ],
+            [
+              77.9,
+              23.56
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BEGUMGANJ",
+      "properties": {
+        "name": "Begumganj Highland Watershed",
+        "tehsil_code": "BEGUMGANJ",
+        "river_basin": "Upper Bina River Headwaters",
+        "area_sqkm": 1210,
+        "dominant_soil": "Medium Black & Red Gravelly"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.18,
+              23.78
+            ],
+            [
+              78.48,
+              23.76
+            ],
+            [
+              78.5,
+              23.48
+            ],
+            [
+              78.22,
+              23.45
+            ],
+            [
+              78.18,
+              23.62
+            ],
+            [
+              78.18,
+              23.78
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Silvani",
+      "properties": {
+        "name": "Silvani Forest Margin Catchment",
+        "tehsil_code": "Silvani",
+        "river_basin": "Barna - Tendoni River Basin",
+        "area_sqkm": 1340,
+        "dominant_soil": "Undulating Forest Clay Loam"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.26,
+              23.45
+            ],
+            [
+              78.62,
+              23.44
+            ],
+            [
+              78.65,
+              23.15
+            ],
+            [
+              78.35,
+              23.12
+            ],
+            [
+              78.25,
+              23.28
+            ],
+            [
+              78.26,
+              23.45
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BARELI",
+      "properties": {
+        "name": "Bareli Southern Narmada Plain",
+        "tehsil_code": "BARELI",
+        "river_basin": "Narmada - Barna Confluence",
+        "area_sqkm": 1120,
+        "dominant_soil": "Deep Alluvial Vertisol"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.02,
+              23.05
+            ],
+            [
+              78.38,
+              23.08
+            ],
+            [
+              78.42,
+              22.76
+            ],
+            [
+              78.1,
+              22.75
+            ],
+            [
+              77.95,
+              22.88
+            ],
+            [
+              78.02,
+              23.05
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "UDAIPURA",
+      "properties": {
+        "name": "Udaipura Alluvial Valley",
+        "tehsil_code": "UDAIPURA",
+        "river_basin": "Narmada Eastern Tributary Basin",
+        "area_sqkm": 960,
+        "dominant_soil": "Heavy Alluvial Black Clay"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.36,
+              23.22
+            ],
+            [
+              78.68,
+              23.2
+            ],
+            [
+              78.7,
+              22.95
+            ],
+            [
+              78.38,
+              22.92
+            ],
+            [
+              78.34,
+              23.08
+            ],
+            [
+              78.36,
+              23.22
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

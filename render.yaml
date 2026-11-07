@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ecovision-phd-ai
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python src/data_generator.py && python src/preprocessor.py && python src/features.py && python src/train.py && python src/xai.py"
+    startCommand: "streamlit run app/dashboard.py --server.port $PORT --server.address 0.0.0.0 --server.headless true"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+

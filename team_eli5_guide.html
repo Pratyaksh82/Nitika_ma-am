@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ELI5 Team Guide: Our PhD Rainfall & Soil Erosion AI Project</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 14mm 14mm 14mm;
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 8.5pt;
+      color: #64748b;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    @bottom-left {
+      content: "Friendly Team Guide • PhD Rainfall & Soil Erosion AI";
+      font-size: 8pt;
+      color: #94a3b8;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.5;
+    font-size: 9.5pt;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Fun Doodle Header */
+  .doodle-banner {
+    background: #fef08a;
+    border: 2.5px solid #1e293b;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    box-shadow: 4px 4px 0px #1e293b;
+  }
+
+  .badge-fun {
+    display: inline-block;
+    background: #ffffff;
+    color: #1e293b;
+    border: 2px solid #1e293b;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 8pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 19pt;
+    font-weight: 900;
+    color: #0f172a;
+    margin: 4px 0 6px 0;
+    line-height: 1.2;
+  }
+
+  .tagline {
+    font-size: 10.5pt;
+    color: #334155;
+    font-weight: 500;
+  }
+
+  /* Doodle Card Styling */
+  .doodle-card {
+    background: #ffffff;
+    border: 2px solid #1e293b;
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    box-shadow: 3px 3px 0px #1e293b;
+    page-break-inside: avoid;
+  }
+
+  .card-yellow { background: #fef9c3; }
+  .card-blue { background: #e0f2fe; }
+  .card-green { background: #dcfce7; }
+  .card-purple { background: #f3e8ff; }
+  .card-pink { background: #ffe4e6; }
+  .card-orange { background: #ffedd5; }
+
+  h2 {
+    font-size: 12.5pt;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 800;
+    color: #1e293b;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    page-break-after: avoid;
+  }
+
+  /* Story bubble */
+  .story-bubble {
+    background: #f1f5f9;
+    border: 1.5px solid #94a3b8;
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+
+  /* Grid of friendly boxes */
+  .doodle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+
+  .doodle-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+
+  .mini-box {
+    border: 2px solid #1e293b;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 2.5px 2.5px 0px #1e293b;
+    font-size: 8.5pt;
+  }
+
+  .mini-box-title {
+    font-weight: 800;
+    font-size: 9pt;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Receipt style for XAI / SHAP */
+  .receipt {
+    background: #fafafa;
+    border: 2px dashed #64748b;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 8.5pt;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+
+  .receipt-header {
+    text-align: center;
+    font-weight: 800;
+    border-bottom: 1.5px dashed #94a3b8;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    font-size: 9pt;
+  }
+
+  .receipt-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0;
+  }
+
+  .receipt-total {
+    border-top: 1.5px dashed #94a3b8;
+    padding-top: 6px;
+    margin-top: 6px;
+    font-weight: 800;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Fun tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 10px 0;
+    font-size: 8.5pt;
+    border: 2px solid #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  th, td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #cbd5e1;
+    border-right: 1px solid #cbd5e1;
+    text-align: left;
+  }
+
+  th {
+    background: #e2e8f0;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 2px solid #1e293b;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  td:last-child, th:last-child {
+    border-right: none;
+  }
+
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* SVG doodle container */
+  .svg-center {
+    text-align: center;
+    margin: 8px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header Banner -->
+<div class="doodle-banner">
+  <div class="badge-fun">ELI5 TEAM EDITION • ZERO JARGON</div>
+  <h1>Our PhD Rainfall & Soil Erosion AI Project</h1>
+  <div class="tagline">A super simple, illustrated guide so the whole team understands what we are building, why the previous team failed, and how our AI works!</div>
+</div>
+
+<!-- SECTION 1 -->
+<h2>🌾 1. The Story: Why Are We Doing This?</h2>
+<div class="story-bubble">
+  <strong>Imagine this:</strong> It is July in Raisen district, Madhya Pradesh. A farmer named Ramesh has just plowed his field and planted his soybean seeds. 
+  Suddenly, an unexpected cloudburst dumps 80 mm of violent rain in 2 hours! 
+  Two terrible things happen:
+  <ol>
+    <li>His crops get drowned.</li>
+    <li>The powerful rush of rainwater rips off the top layer of rich, black soil and carries it into the river. That fertile soil took <strong>500 years</strong> to form naturally, and it got washed away in one afternoon! This is called <strong>Soil Erosion</strong>.</li>
+  </ol>
+  <strong>Ma'am's PhD Question:</strong> <em>Can we use Artificial Intelligence to look at 34 years of weather records, predict exactly when heavy rains will hit, and calculate how much soil will wash away so farmers and the government can build barriers in time?</em>
+</div>
+
+<!-- SECTION 2 -->
+<h2>🕵️‍♂️ 2. What the Previous Team Did (And Their Big Mistake!)</h2>
+<p>
+Ma'am gave this project to an earlier team. They wrote some Python code, but their model was rejected because of a funny, embarrassing beginner mistake.
+</p>
+
+<div class="doodle-grid">
+  <div class="mini-box card-pink">
+    <div class="mini-box-title">❌ The "Cheating" Mistake (Data Leakage)</div>
+    Imagine you are taking an exam today, and your teacher accidentally printed today's answers right on the question paper! You would score 99%, but you didn't actually learn anything.<br><br>
+    The previous team created a feature called <code>Rolling3</code> (the average rain over 3 days). But in their code, <strong>they included today's rain inside the average used to predict today!</strong><br>
+    Because the model was "cheating", it claimed <strong>97.4% accuracy</strong>. But in real life, you cannot look into the future!
+  </div>
+
+  <div class="mini-box card-green">
+    <div class="mini-box-title">✅ How We Fix It (Honest Science)</div>
+    We only let the AI look at <strong>yesterday and earlier days</strong> (<span style="font-weight:700;">t-1, t-2, t-3</span>).<br><br>
+    When predicting today's rain, the AI only knows what already happened in the past! 
+    That means our model is <strong>100% honest, mathematically sound, and ready to be defended in a PhD viva</strong> without Ma'am getting questioned by external examiners.
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<h2>🧠 3. How Our AI Predicts Rainfall (In 3 Simple Clues)</h2>
+<p>How does the computer guess how much rain will fall tomorrow in Bhopal or Bareli? It checks 3 clues:</p>
+
+<div class="doodle-grid-3">
+  <div class="mini-box card-blue">
+    <div class="mini-box-title">⏰ Clue 1: The Calendar Clock</div>
+    In Madhya Pradesh, it doesn't rain much in December, but it rains a lot in July and August! We teach the AI the monsoon cycle using sine and cosine waves so it knows the exact season.
+  </div>
+
+  <div class="mini-box card-yellow">
+    <div class="mini-box-title">📅 Clue 2: What Happened Yesterday?</div>
+    Rain has momentum! If it rained heavily yesterday (Lag 1) or has been raining for the past 7 days (Rolling 7), the ground is soaked and the atmosphere is wet, so more rain is likely.
+  </div>
+
+  <div class="mini-box card-purple">
+    <div class="mini-box-title">📍 Clue 3: Which Tehsil Is It?</div>
+    Udaipura and Bareli get more total rain on average than Berasia or Ghairatganj. The AI learns the local geographical personality of each of the 8 tehsils.
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4 -->
+<h2>🧾 4. What is "Explainable AI" (XAI)? The AI Receipt!</h2>
+<div class="doodle-card card-yellow">
+  Normally, Machine Learning is a <strong>"Black Box"</strong>: you feed numbers in, and it spits out <em>"25 mm of rain"</em> without telling you why. If an examiner asks Ma'am, <em>"Why did the model say 25 mm?"</em>, she can't just say <em>"The computer felt like it!"</em><br><br>
+  <strong>Enter SHAP (Shapley Additive Explanations):</strong><br>
+  SHAP is like an itemized grocery bill or receipt from the AI. It shows the base starting average, and then adds or subtracts exact millimeters for each clue!
+</div>
+
+<div class="receipt">
+  <div class="receipt-header">🧾 AI PREDICTION RECEIPT (TreeSHAP Breakdown)<br>Date: 15 August 2024 • Tehsil: Raisen</div>
+  <div class="receipt-line"><span>District Base Average Rainfall:</span><span>+ 3.7 mm</span></div>
+  <div class="receipt-line"><span>+ Clue: Month is August (Peak Monsoon!):</span><span style="color:#16a34a;">+ 8.5 mm</span></div>
+  <div class="receipt-line"><span>+ Clue: It rained 24 mm yesterday (Lag 1):</span><span style="color:#16a34a;">+ 5.2 mm</span></div>
+  <div class="receipt-line"><span>+ Clue: Past 7 days were very wet:</span><span style="color:#16a34a;">+ 4.1 mm</span></div>
+  <div class="receipt-line"><span>- Clue: Day of month pattern adjustment:</span><span style="color:#dc2626;">- 0.5 mm</span></div>
+  <div class="receipt-total"><span>FINAL RAINFALL FORECAST:</span><span>= 21.0 mm</span></div>
+</div>
+<p style="font-size: 8.5pt; color: #475569; text-align: center;">
+  <em>Every millimeter predicted is accounted for! This is what makes the project "Explainable AI".</em>
+</p>
+
+<!-- SECTION 5 -->
+<h2>⛰️ 5. What is RUSLE Soil Erosion? (The 5 Multipliers)</h2>
+<p>
+Once the AI predicts how many millimeters of rain will fall, we plug that into the famous <strong>RUSLE</strong> formula. Don't be scared by the name—it's literally just multiplying 5 things together:
+</p>
+
+<div class="svg-center">
+  <svg width="100%" height="90" viewBox="0 0 650 90" style="max-width: 650px;">
+    <!-- Box R -->
+    <rect x="10" y="10" width="105" height="65" rx="10" fill="#dbeafe" stroke="#1e293b" stroke-width="2"/>
+    <text x="62" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#1e3a8a">R (Rain)</text>
+    <text x="62" y="55" text-anchor="middle" font-size="9" fill="#334155">How hard rain hits</text>
+
+    <!-- Times -->
+    <text x="127" y="48" font-size="18" font-weight="bold" fill="#1e293b">×</text>
+
+    <!-- Box K -->
+    <rect x="140" y="10" width="105" height="65" rx="10" fill="#fef3c7" stroke="#1e293b" stroke-width="2"/>
+    <text x="192" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#92400e">K (Soil)</text>
+    <text x="192" y="55" text-anchor="middle" font-size="9" fill="#334155">How easily it erodes</text>
+
+    <!-- Times -->
+    <text x="257" y="48" font-size="18" font-weight="bold" fill="#1e293b">×</text>
+
+    <!-- Box LS -->
+    <rect x="270" y="10" width="105" height="65" rx="10" fill="#ffedd5" stroke="#1e293b" stroke-width="2"/>
+    <text x="322" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#9a3412">LS (Slope)</text>
+    <text x="322" y="55" text-anchor="middle" font-size="9" fill="#334155">Steep hill vs flat</text>
+
+    <!-- Times -->
+    <text x="387" y="48" font-size="18" font-weight="bold" fill="#1e293b">×</text>
+
+    <!-- Box C -->
+    <rect x="400" y="10" width="105" height="65" rx="10" fill="#dcfce7" stroke="#1e293b" stroke-width="2"/>
+    <text x="452" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#166534">C (Cover)</text>
+    <text x="452" y="55" text-anchor="middle" font-size="9" fill="#334155">Trees & crop shield</text>
+
+    <!-- Times -->
+    <text x="517" y="48" font-size="18" font-weight="bold" fill="#1e293b">×</text>
+
+    <!-- Box P -->
+    <rect x="530" y="10" width="105" height="65" rx="10" fill="#ede9fe" stroke="#1e293b" stroke-width="2"/>
+    <text x="582" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#5b21b6">P (Farming)</text>
+    <text x="582" y="55" text-anchor="middle" font-size="9" fill="#334155">Contour trenches</text>
+  </svg>
+</div>
+
+<p style="text-align: center; font-weight: 700; margin: 4px 0 10px 0;">
+  Result = Soil Loss <span style="font-weight:800; color:#b91c1c;">A</span> (in tons per hectare per year)
+</p>
+
+<table>
+  <tr>
+    <th style="width: 25%;">Soil Loss Rate</th>
+    <th style="width: 20%;">Danger Level</th>
+    <th style="width: 55%;">What Should the Farmer Do?</th>
+  </tr>
+  <tr>
+    <td><strong>Less than 5 tons</strong></td>
+    <td><span style="color:#16a34a; font-weight:700;">🟢 Low (Safe)</span></td>
+    <td>Normal soil. Nature rebuilds soil this fast naturally. No panic!</td>
+  </tr>
+  <tr>
+    <td><strong>5 to 10 tons</strong></td>
+    <td><span style="color:#d97706; font-weight:700;">🟡 Moderate</span></td>
+    <td>Cover the soil with leftover straw/mulch so rain drops don't hit bare dirt.</td>
+  </tr>
+  <tr>
+    <td><strong>10 to 20 tons</strong></td>
+    <td><span style="color:#ea580c; font-weight:700;">🟠 High Risk</span></td>
+    <td>Build small mud walls (contour bunds) across the slope to stop rushing water.</td>
+  </tr>
+  <tr>
+    <td><strong>More than 20 tons</strong></td>
+    <td><span style="color:#dc2626; font-weight:700;">🔴 Severe Danger</span></td>
+    <td>Build small stone check-dams and plant vetiver grass roots immediately!</td>
+  </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 6 -->
+<h2>💻 6. How Our Code is Organized (The Team Map)</h2>
+<p>
+Here is where everything lives in our folder so you and your teammates know exactly what each file does:
+</p>
+
+<div class="doodle-grid">
+  <div class="mini-box card-blue">
+    <div class="mini-box-title">📁 <code>data/raw/</code> (The Raw Records)</div>
+    Contains the 9 official IMD CSV files (1991–2025) for all 8 tehsils (Bareli, Bhopal, Raisen, Udaipura, etc.).
+  </div>
+
+  <div class="mini-box card-yellow">
+    <div class="mini-box-title">⚙️ <code>src/preprocessor.py</code> (The Cleaner)</div>
+    Reads the messy tables, melts the 31 daily columns into neat rows, cleans up missing values, and fixes calendar dates.
+  </div>
+
+  <div class="mini-box card-green">
+    <div class="mini-box-title">✨ <code>src/features.py</code> (The Feature Builder)</div>
+    Creates our leak-free clues: shifted lags (yesterday's rain), 7-day rolling averages, and sine/cosine calendar cycles.
+  </div>
+
+  <div class="mini-box card-purple">
+    <div class="mini-box-title">🤖 <code>src/train.py</code> (The AI Trainer)</div>
+    Trains Ridge, Random Forest, LightGBM, and XGBoost. Tests them on the newest years (2023–2025) and picks the best one.
+  </div>
+
+  <div class="mini-box card-pink">
+    <div class="mini-box-title">🔍 <code>src/xai.py</code> (The Explainer)</div>
+    Runs TreeSHAP to draw beeswarm charts, feature importance rankings, and individual day waterfall receipts!
+  </div>
+
+  <div class="mini-box card-orange">
+    <div class="mini-box-title">🛡️ <code>src/rusle.py</code> (The Soil Calculator)</div>
+    Takes forecasted rain, multiplies the 5 RUSLE factors, and labels the erosion danger (Safe, Moderate, or Critical).
+  </div>
+</div>
+
+<div class="doodle-card card-blue" style="margin-top: 10px;">
+  <div style="font-weight: 800; font-size: 10pt; color: #1e3a8a; margin-bottom: 4px;">
+    🖥️ <code>app/dashboard.py</code> (The Interactive Web App)
+  </div>
+  A beautiful webpage! You can open it in Chrome, pick any tehsil (e.g. Bhopal or Silvani), pick any date, and watch the AI instantly forecast the rain, draw the SHAP explanation receipt, and show the soil erosion warning gauge! Ma'am can show this in her live presentation!
+</div>
+
+<!-- SECTION 7 -->
+<h2>🚀 7. Simple Commands to Run Everything</h2>
+<p>You can run the entire project with just 3 commands in the terminal:</p>
+
+<div class="story-bubble" style="background:#0f172a; color:#f8fafc; font-family:Consolas, monospace;">
+  # Step 1: Run the automated tests to prove zero leakage<br>
+  <span style="color:#38bdf8;">.venv\Scripts\pytest tests/ -v</span><br><br>
+  # Step 2: Retrain the AI and generate all explanation charts<br>
+  <span style="color:#38bdf8;">.venv\Scripts\python src/train.py</span><br>
+  <span style="color:#38bdf8;">.venv\Scripts\python src/xai.py</span><br><br>
+  # Step 3: Launch the interactive web dashboard for Ma'am<br>
+  <span style="color:#4ade80;">.venv\Scripts\streamlit run app/dashboard.py</span>
+</div>
+
+<!-- SECTION 8 -->
+<h2>🎯 8. What to Say in the Viva / Presentation (Cheatsheet)</h2>
+<div class="doodle-grid">
+  <div class="mini-box card-green">
+    <div class="mini-box-title">Q: Why did you drop the previous team's model?</div>
+    <em>"The previous model suffered from data leakage in Rolling3 by including the current day's target rainfall. It was mathematically predicting today using today! Our model strictly shifts features to past observations (t-1), ensuring genuine temporal validity."</em>
+  </div>
+
+  <div class="mini-box card-yellow">
+    <div class="mini-box-title">Q: What makes your model 'Explainable'?</div>
+    <em>"We implemented TreeSHAP based on game theory. For every single forecast, it outputs the exact millimeter attribution contributed by the monsoon season, previous rainfall, and regional factors, satisfying local accuracy."</em>
+  </div>
+
+  <div class="mini-box card-purple">
+    <div class="mini-box-title">Q: How does rainfall connect to soil erosion?</div>
+    <em>"Rainfall impact is the primary kinetic driver of topsoil detachment. We calculate the Rainfall Erosivity Factor (R) dynamically from predicted daily precipitation and couple it with regional soil erodibility (K) and slope (LS) via the RUSLE equation."</em>
+  </div>
+
+  <div class="mini-box card-blue">
+    <div class="mini-box-title">Q: Why use XGBoost and LightGBM?</div>
+    <em>"Gradient boosted decision trees naturally capture nonlinear climate interactions, handle mixed categorical/continuous data, and allow exact polynomial-time TreeSHAP computation without black-box approximations."</em>
+  </div>
+</div>
+
+<div class="doodle-card card-orange" style="text-align: center; font-weight: 800; font-size: 10pt; margin-top: 14px;">
+  🎉 Made with ❤️ for your team and Ma'am's PhD success! You guys are going to ace this!
+</div>
+
+</body>
+</html>
+
