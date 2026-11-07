@@ -1,6 +1,7 @@
 /**
  * EcoVision AI • Publication-Grade Multi-Page Presentation Manual PDF Compiler
- * Enhanced with Hinglish Notes, Doodle Boxes, Sticky Notes, and Simple Component Guides.
+ * Fully Updated with Date Change Engine, Atmospheric Profile Shocks, Scroll Architecture,
+ * Hinglish Doodle Notes, and Complete Video Walkthrough Index.
  */
 
 const puppeteer = require('puppeteer-core');
@@ -55,7 +56,7 @@ const htmlContent = `<!DOCTYPE html>
     .page {
       width: 210mm;
       height: 297mm;
-      padding: 11mm 14mm 10mm 14mm;
+      padding: 10mm 13mm 9mm 13mm;
       page-break-after: always;
       position: relative;
       background: #060911 radial-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px);
@@ -74,9 +75,9 @@ const htmlContent = `<!DOCTYPE html>
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-      font-size: 8pt;
+      font-size: 7.8pt;
       color: #94a3b8;
     }
     .doc-header .brand {
@@ -93,7 +94,7 @@ const htmlContent = `<!DOCTYPE html>
       border: 1px solid rgba(14, 165, 233, 0.35);
       padding: 2px 7px;
       border-radius: 999px;
-      font-size: 6.8pt;
+      font-size: 6.5pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -104,7 +105,7 @@ const htmlContent = `<!DOCTYPE html>
       align-items: center;
       padding-top: 5px;
       border-top: 1px solid rgba(148, 163, 184, 0.15);
-      font-size: 7.2pt;
+      font-size: 7pt;
       color: #64748b;
     }
     .doc-footer a {
@@ -117,13 +118,13 @@ const htmlContent = `<!DOCTYPE html>
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding-top: 7px;
-      gap: 8px;
+      padding-top: 6px;
+      gap: 7px;
     }
 
     /* Typography */
     h1 {
-      font-size: 17pt;
+      font-size: 16pt;
       font-weight: 800;
       line-height: 1.15;
       background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
@@ -132,7 +133,7 @@ const htmlContent = `<!DOCTYPE html>
       letter-spacing: -0.5px;
     }
     h2 {
-      font-size: 11.5pt;
+      font-size: 11pt;
       font-weight: 700;
       color: #f8fafc;
       letter-spacing: -0.2px;
@@ -141,15 +142,15 @@ const htmlContent = `<!DOCTYPE html>
       gap: 6px;
     }
     h3 {
-      font-size: 8.8pt;
+      font-size: 8.5pt;
       font-weight: 700;
       color: #38bdf8;
       text-transform: uppercase;
       letter-spacing: 0.6px;
     }
     p {
-      font-size: 8pt;
-      line-height: 1.4;
+      font-size: 7.8pt;
+      line-height: 1.38;
       color: #cbd5e1;
     }
 
@@ -158,7 +159,7 @@ const htmlContent = `<!DOCTYPE html>
       background: rgba(15, 23, 42, 0.82);
       border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: 8px;
-      padding: 8px 11px;
+      padding: 7px 10px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
     }
     .card-glow {
@@ -170,80 +171,80 @@ const htmlContent = `<!DOCTYPE html>
     .sticky-note {
       background: #fef08a;
       color: #422006;
-      padding: 7px 11px;
+      padding: 6px 10px;
       border-radius: 5px;
       box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
       border-left: 5px solid #eab308;
-      transform: rotate(-0.6deg);
-      font-size: 7.8pt;
+      transform: rotate(-0.5deg);
+      font-size: 7.5pt;
       line-height: 1.35;
     }
     .sticky-note strong {
       color: #713f12;
-      font-size: 8.2pt;
+      font-size: 8pt;
     }
     .sticky-note-cyan {
       background: #cffafe;
       color: #164e63;
-      padding: 7px 11px;
+      padding: 6px 10px;
       border-radius: 5px;
       box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
       border-left: 5px solid #06b6d4;
-      transform: rotate(0.6deg);
-      font-size: 7.8pt;
+      transform: rotate(0.5deg);
+      font-size: 7.5pt;
       line-height: 1.35;
     }
     .sticky-note-cyan strong {
       color: #155e75;
-      font-size: 8.2pt;
+      font-size: 8pt;
     }
     .sticky-note-pink {
       background: #fce7f3;
       color: #831843;
-      padding: 7px 11px;
+      padding: 6px 10px;
       border-radius: 5px;
       box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
       border-left: 5px solid #ec4899;
-      transform: rotate(-0.5deg);
-      font-size: 7.8pt;
+      transform: rotate(-0.4deg);
+      font-size: 7.5pt;
       line-height: 1.35;
     }
     .sticky-note-pink strong {
       color: #9d174d;
-      font-size: 8.2pt;
+      font-size: 8pt;
     }
 
     .doodle-box {
       border: 1.8px dashed rgba(245, 158, 11, 0.75);
-      border-radius: 8px;
-      padding: 8px 11px;
+      border-radius: 7px;
+      padding: 6px 10px;
       background: rgba(245, 158, 11, 0.06);
     }
     .doodle-box-cyan {
       border: 1.8px dashed rgba(6, 182, 212, 0.75);
-      border-radius: 8px;
-      padding: 8px 11px;
+      border-radius: 7px;
+      padding: 6px 10px;
       background: rgba(6, 182, 212, 0.06);
     }
     .doodle-box-green {
       border: 1.8px dashed rgba(16, 185, 129, 0.75);
-      border-radius: 8px;
-      padding: 8px 11px;
+      border-radius: 7px;
+      padding: 6px 10px;
       background: rgba(16, 185, 129, 0.06);
     }
     .doodle-title {
-      font-size: 8pt;
+      font-size: 7.8pt;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
       gap: 5px;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .doodle-tag {
       font-family: 'Caveat', cursive;
-      font-size: 11pt;
+      font-size: 10.5pt;
       font-weight: 700;
       color: #f59e0b;
       margin-left: 4px;
@@ -253,22 +254,22 @@ const htmlContent = `<!DOCTYPE html>
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 7px;
     }
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 7px;
+      gap: 6px;
     }
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
+      gap: 5px;
     }
 
     /* Screenshot Container */
     .screenshot-frame {
-      border-radius: 7px;
+      border-radius: 6px;
       overflow: hidden;
       border: 1px solid rgba(56, 189, 248, 0.3);
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
@@ -289,12 +290,12 @@ const htmlContent = `<!DOCTYPE html>
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       background: #0284c7;
       color: #ffffff;
-      font-size: 7pt;
+      font-size: 6.8pt;
       font-weight: 700;
       margin-right: 4px;
       flex-shrink: 0;
@@ -303,7 +304,7 @@ const htmlContent = `<!DOCTYPE html>
       display: inline-block;
       padding: 1px 5px;
       border-radius: 4px;
-      font-size: 6.5pt;
+      font-size: 6.2pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -318,21 +319,21 @@ const htmlContent = `<!DOCTYPE html>
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 7.2pt;
+      font-size: 7pt;
     }
     th {
       background: rgba(30, 41, 59, 0.85);
       color: #94a3b8;
       font-weight: 700;
       text-align: left;
-      padding: 4px 7px;
+      padding: 3px 6px;
       border-bottom: 1px solid rgba(148, 163, 184, 0.25);
       text-transform: uppercase;
-      font-size: 6.5pt;
+      font-size: 6.2pt;
       letter-spacing: 0.5px;
     }
     td {
-      padding: 4px 7px;
+      padding: 3px 6px;
       border-bottom: 1px solid rgba(148, 163, 184, 0.12);
       color: #e2e8f0;
       vertical-align: top;
@@ -342,7 +343,7 @@ const htmlContent = `<!DOCTYPE html>
     }
     .code-span {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 6.8pt;
+      font-size: 6.5pt;
       background: rgba(15, 23, 42, 0.7);
       color: #38bdf8;
       padding: 1px 3px;
@@ -363,22 +364,22 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content">
       <!-- Title Hero -->
-      <div class="card card-glow" style="padding: 11px 14px;">
+      <div class="card card-glow" style="padding: 10px 13px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <div style="display: flex; gap: 5px; margin-bottom: 4px;">
+            <div style="display: flex; gap: 5px; margin-bottom: 3px;">
               <span class="tag tag-cyan">Live Production Web App</span>
               <span class="tag tag-emerald">Render Web Service</span>
               <span class="tag tag-violet">Explainable AI (TreeSHAP)</span>
             </div>
             <h1>EcoVision AI: Integrated Watershed & Soil Erosion Command Center</h1>
-            <p style="font-size: 8.8pt; color: #94a3b8; margin-top: 3px;">
+            <p style="font-size: 8.5pt; color: #94a3b8; margin-top: 2px;">
               Multi-Day Predictive Meteorological Forecasting, Game-Theoretic TreeSHAP Attribution, and RUSLE Physical Erosion Risk Triage
             </p>
           </div>
-          <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 7.2pt; color: #64748b;">
+          <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 7pt; color: #64748b;">
             <div>DATE: Nov 2026</div>
-            <div style="color: #38bdf8; font-weight: 700; margin-top: 2px;">STATUS: 200 OK</div>
+            <div style="color: #38bdf8; font-weight: 700; margin-top: 1px;">STATUS: 200 OK</div>
           </div>
         </div>
       </div>
@@ -386,14 +387,14 @@ const htmlContent = `<!DOCTYPE html>
       <!-- Links Badges -->
       <div class="grid-2">
         <div class="card">
-          <div style="font-size: 6.8pt; color: #94a3b8; text-transform: uppercase;">🌐 Live Cloud URL</div>
-          <div style="font-size: 8.2pt; font-weight: 700; color: #38bdf8;">https://nitika-ma-am.onrender.com/</div>
-          <div style="font-size: 6.5pt; color: #10b981; margin-top: 1px;">● Deployed on Render • Live & Accessible Online</div>
+          <div style="font-size: 6.5pt; color: #94a3b8; text-transform: uppercase;">🌐 Live Cloud URL</div>
+          <div style="font-size: 8pt; font-weight: 700; color: #38bdf8;">https://nitika-ma-am.onrender.com/</div>
+          <div style="font-size: 6.2pt; color: #10b981; margin-top: 1px;">● Deployed on Render • Live & Accessible Online</div>
         </div>
         <div class="card">
-          <div style="font-size: 6.8pt; color: #94a3b8; text-transform: uppercase;">💻 GitHub Source Code</div>
-          <div style="font-size: 8.2pt; font-weight: 700; color: #38bdf8;">https://github.com/Pratyaksh82/Nitika_ma-am</div>
-          <div style="font-size: 6.5pt; color: #a855f7; margin-top: 1px;">● Synchronized on branch main (Includes Video & PDF)</div>
+          <div style="font-size: 6.5pt; color: #94a3b8; text-transform: uppercase;">💻 GitHub Source Code</div>
+          <div style="font-size: 8pt; font-weight: 700; color: #38bdf8;">https://github.com/Pratyaksh82/Nitika_ma-am</div>
+          <div style="font-size: 6.2pt; color: #a855f7; margin-top: 1px;">● Synchronized on branch main (Includes Video & PDF)</div>
         </div>
       </div>
 
@@ -401,7 +402,7 @@ const htmlContent = `<!DOCTYPE html>
       <div class="sticky-note">
         <strong>📝 Bhai Yeh Website Aakhir Karti Kya Hai? (Simple Summary in Hinglish):</strong><br>
         EcoVision AI hamare Raisen aur Bhopal ke 8 tehsils (Raisen, Bhopal, Bareli, Begumganj, Silvani, Gairatganj, Udaipur, Berasia) ke liye ek <strong>Smart Environmental Watchtower</strong> hai. Yeh do bade kaam karti hai:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
           <li><strong>Pehla (ML Forecast):</strong> Aane wale 7 dino mein kab kitni tez baarish hogi (XGBoost aur Random Forest AI models se).</li>
           <li><strong>Doosra (Soil Loss Physics):</strong> Uss baarish ki wajah se kisaano ke khet ki kitni upjau mitti (topsoil) beh kar barbaad ho jayegi (RUSLE physical formula se).</li>
           <li><strong>Teesra (AI Ka Bill / Receipt):</strong> TreeSHAP se har prediction ka transparent hisaab-kitaab milta hai ki model ne yeh faisla kyun liya!</li>
@@ -411,30 +412,30 @@ const htmlContent = `<!DOCTYPE html>
       <!-- 4 Core Pillars Grid -->
       <div class="grid-4">
         <div class="card" style="border-left: 3px solid #38bdf8;">
-          <div class="tag tag-cyan" style="margin-bottom: 3px;">Tab 1</div>
-          <div style="font-weight: 700; font-size: 7.8pt; color: #f8fafc;">Catchment Radar</div>
-          <div style="font-size: 7pt; color: #94a3b8; margin-top: 2px;">
+          <div class="tag tag-cyan" style="margin-bottom: 2px;">Tab 1</div>
+          <div style="font-weight: 700; font-size: 7.5pt; color: #f8fafc;">Catchment Radar</div>
+          <div style="font-size: 6.8pt; color: #94a3b8; margin-top: 1px;">
             Raisen-Bhopal 3D Map + Glowing Station Pins + Live Table.
           </div>
         </div>
         <div class="card" style="border-left: 3px solid #10b981;">
-          <div class="tag tag-emerald" style="margin-bottom: 3px;">Tab 2</div>
-          <div style="font-weight: 700; font-size: 7.8pt; color: #f8fafc;">7-Day Trajectory</div>
-          <div style="font-size: 7pt; color: #94a3b8; margin-top: 2px;">
+          <div class="tag tag-emerald" style="margin-bottom: 2px;">Tab 2</div>
+          <div style="font-weight: 700; font-size: 7.5pt; color: #f8fafc;">7-Day Trajectory</div>
+          <div style="font-size: 6.8pt; color: #94a3b8; margin-top: 1px;">
             Forward forecast curve + What-If Tufaan & Slope Simulator.
           </div>
         </div>
         <div class="card" style="border-left: 3px solid #a855f7;">
-          <div class="tag tag-violet" style="margin-bottom: 3px;">Tab 3</div>
-          <div style="font-weight: 700; font-size: 7.8pt; color: #f8fafc;">TreeSHAP Receipts</div>
-          <div style="font-size: 7pt; color: #94a3b8; margin-top: 2px;">
+          <div class="tag tag-violet" style="margin-bottom: 2px;">Tab 3</div>
+          <div style="font-weight: 700; font-size: 7.5pt; color: #f8fafc;">TreeSHAP Receipts</div>
+          <div style="font-size: 6.8pt; color: #94a3b8; margin-top: 1px;">
             AI decision ka hisaab (waterfall chart + feature impact).
           </div>
         </div>
         <div class="card" style="border-left: 3px solid #f59e0b;">
-          <div class="tag tag-amber" style="margin-bottom: 3px;">Tab 4</div>
-          <div style="font-weight: 700; font-size: 7.8pt; color: #f8fafc;">RUSLE Interventions</div>
-          <div style="font-size: 7pt; color: #94a3b8; margin-top: 2px;">
+          <div class="tag tag-amber" style="margin-bottom: 2px;">Tab 4</div>
+          <div style="font-weight: 700; font-size: 7.5pt; color: #f8fafc;">RUSLE Interventions</div>
+          <div style="font-size: 6.8pt; color: #94a3b8; margin-top: 1px;">
             Soil loss speed gauge + Kisaan Salah Advisory Bulletin.
           </div>
         </div>
@@ -445,25 +446,25 @@ const htmlContent = `<!DOCTYPE html>
         <div class="doodle-title" style="color: #38bdf8;">
           ⚙️ End-to-End Pipeline (Data Kaise Flow Hota Hai) <span class="doodle-tag">~ 4-Step Architecture</span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 6.8pt; margin-top: 4px;">
-          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.3); padding: 5px 6px; border-radius: 4px; flex: 1; text-align: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; margin-top: 3px;">
+          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.3); padding: 4px 6px; border-radius: 4px; flex: 1; text-align: center;">
             <div style="color: #38bdf8; font-weight: 700;">1. IMD WEATHER DATA</div>
-            <div style="font-size: 6pt; color: #94a3b8;">1991-2024 Historical Feeds</div>
+            <div style="font-size: 5.8pt; color: #94a3b8;">1991-2024 Historical Feeds</div>
           </div>
           <div style="color: #38bdf8;">➔</div>
-          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(16, 185, 129, 0.3); padding: 5px 6px; border-radius: 4px; flex: 1; text-align: center;">
+          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(16, 185, 129, 0.3); padding: 4px 6px; border-radius: 4px; flex: 1; text-align: center;">
             <div style="color: #10b981; font-weight: 700;">2. XGBOOST ENSEMBLE</div>
-            <div style="font-size: 6pt; color: #94a3b8;">Daily Precipitation (mm)</div>
+            <div style="font-size: 5.8pt; color: #94a3b8;">Daily Precipitation (mm)</div>
           </div>
           <div style="color: #10b981;">➔</div>
-          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(168, 85, 247, 0.3); padding: 5px 6px; border-radius: 4px; flex: 1; text-align: center;">
+          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(168, 85, 247, 0.3); padding: 4px 6px; border-radius: 4px; flex: 1; text-align: center;">
             <div style="color: #a855f7; font-weight: 700;">3. TREESHAP EXPLAINER</div>
-            <div style="font-size: 6pt; color: #94a3b8;">Game-Theoretic Attribution</div>
+            <div style="font-size: 5.8pt; color: #94a3b8;">Game-Theoretic Attribution</div>
           </div>
           <div style="color: #a855f7;">➔</div>
-          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); padding: 5px 6px; border-radius: 4px; flex: 1; text-align: center;">
+          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); padding: 4px 6px; border-radius: 4px; flex: 1; text-align: center;">
             <div style="color: #f59e0b; font-weight: 700;">4. RUSLE PHYSICS</div>
-            <div style="font-size: 6pt; color: #94a3b8;">A = R·K·LS·C·P Soil Triage</div>
+            <div style="font-size: 5.8pt; color: #94a3b8;">A = R·K·LS·C·P Soil Triage</div>
           </div>
         </div>
       </div>
@@ -475,70 +476,75 @@ const htmlContent = `<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- ================= PAGE 2: HEADER & BENTO GRID ================= -->
+  <!-- ================= PAGE 2: HEADER, DATE & ATMOSPHERIC PROFILES ================= -->
   <div class="page">
     <div class="doc-header">
       <div class="brand">
-        <span>🧭</span> Feature Suite 1: Command Header & Live Bento Grid
+        <span>🧭</span> Feature Suite 1: Command Header & Weather Mode Generator
       </div>
-      <div class="badge">Component Manual</div>
+      <div class="badge">Sidebar & Weather Controls</div>
     </div>
 
     <div class="content">
-      <div class="card" style="padding: 7px 11px;">
-        <h2>Executive Telemetry & Ambient Observation Controls</h2>
-        <p style="font-size: 7.8pt; color: #94a3b8; margin-top: 1px;">
-          Top navigation deck with continuous telemetry stream, active prediction engine stats, and the 4 primary Bento metric cards.
+      <div class="card" style="padding: 6px 10px;">
+        <h2>Date Engine & Atmospheric Weather Shock Modes</h2>
+        <p style="font-size: 7.5pt; color: #94a3b8; margin-top: 1px;">
+          How selecting different dates and triggering atmospheric profiles directly alters the live prediction engine and topsoil hazard classification.
         </p>
       </div>
 
       <!-- Screenshot Frame -->
-      <div class="screenshot-frame" style="height: 60mm;">
+      <div class="screenshot-frame" style="height: 52mm;">
         <img src="${b64HeaderBento}" alt="Header and Bento Grid" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
 
       <!-- HINGLISH DOODLE STICKY NOTE -->
       <div class="sticky-note-cyan">
-        <strong>💡 Upar Ke 4 Magic Cards Ka Asli Fundaa (Hinglish Notes):</strong><br>
-        Jab aap website kholte hain, upar yeh 4 dabbe (cards) dikhte hain. Har ek dabba ek critical cheez batata hai:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
-          <li><strong>Card 1 (Daily Rain Forecast):</strong> AI ne calculate kiya ki aaj ya chuni hui date par kitne mm paani barsega (e.g. 28.44 mm).</li>
-          <li><strong>Card 2 (Kinetic Erosivity - R):</strong> Baarish ki boondon mein kitni taakat (kinetic energy) hai mitti ko zameen se ukhadne ki!</li>
-          <li><strong>Card 3 (Topsoil Detachment - A):</strong> Ek saal mein per-hectare kitne ton mitti beh jayegi. 5 ton se kam = Safe, 15+ = Red Alert!</li>
-          <li><strong>Card 4 (ICAR Hazard Tier):</strong> Kisaano aur sarkar ke liye seedha rang-biranga warning signal (Slight, Moderate, High, Severe).</li>
+        <strong>💡 Date Badalne Aur Mausam Change Karne Ka Asli Asar (Hinglish Notes):</strong><br>
+        Sidebar mein 2 powerful controls hain jo poore dashboard ka mausam badal dete hain:
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
+          <li><strong>1. Date Picker (📅 Forecast Date):</strong> Agar aap monsoon ka mahina (June ya August) chunte ho, toh zameen mein pehle se nami hoti hai (high antecedent moisture), jisse baarish aur mitti katan badh jata hai. Winter ya summer date chunne par rainfall auto-drop ho jata hai!</li>
+          <li><strong>2. Historical vs Future:</strong> Agar 1991-2024 ki date chuni, toh IMD ka ground truth match dikhega. Agar future date (2026/2030) chuni, toh AI simulation engine chalega!</li>
+          <li><strong>3. Atmospheric Generator:</strong> Niche diye 4 modes dekho — ek click mein tufaan ya sookha create hota hai!</li>
         </ul>
       </div>
 
-      <!-- Table Breakdown -->
+      <!-- Atmospheric Profiles Comparison Table -->
       <div class="card">
-        <h3>Component Guide & Operational Blueprint</h3>
-        <table style="margin-top: 4px;">
+        <h3>Weather Profile Shocks Comparison (Kya Select Karne Par Kya Hota Hai?)</h3>
+        <table style="margin-top: 3px;">
           <thead>
             <tr>
-              <th style="width: 25px;">#</th>
-              <th style="width: 130px;">UI Component</th>
-              <th style="width: 160px;">Operational Trigger</th>
-              <th>Scientific & Diagnostic Role</th>
+              <th style="width: 130px;">Weather Mode Profile</th>
+              <th style="width: 90px;">Rainfall Forecast</th>
+              <th style="width: 110px;">Soil Loss Detachment</th>
+              <th>System Reaction & Real-World Meaning</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span class="badge-num">1</span></td>
-              <td><strong>Telemetry Ticker & Header</strong></td>
-              <td>Always active on cloud runtime.</td>
-              <td>Shows active node [RAISEN-HEADQUARTERS], GPS coordinates, inference latency (1.4ms), and continual active status.</td>
+              <td><strong>🌦️ Dynamic Monsoon (Auto)</strong></td>
+              <td><span class="code-span">28.44 mm</span></td>
+              <td><span class="code-span">4.82 t/ha/yr</span></td>
+              <td>Baseline seasonal normal. Zameen par safe limit ke andar runoff hota hai (Green status).</td>
             </tr>
             <tr>
-              <td><span class="badge-num">2</span></td>
-              <td><strong>Sidebar: Station Selector</strong></td>
-              <td>Selectbox with 8 central tehsils.</td>
-              <td>Changes catchment parameters (K-factor, LS-factor, base elevation) across Raisen, Bhopal, Bareli, Begumganj, etc.</td>
+              <td><strong>⚡ Cloudburst Event (Extreme)</strong></td>
+              <td><span class="code-span" style="color: #ef4444; font-weight: 700;">92.00 mm</span></td>
+              <td><span class="code-span" style="color: #ef4444; font-weight: 700;">18.50+ t/ha/yr</span></td>
+              <td><strong>▲ Severe Detachment Breach:</strong> Card 3 aur 4 red alert ho jate hain! Mitti beh kar nadiyo mein jaati hai.</td>
             </tr>
             <tr>
-              <td><span class="badge-num">3</span></td>
-              <td><strong>Sidebar: Weather Generator</strong></td>
-              <td>Atmospheric profile dropdown.</td>
-              <td>Allows simulating extreme scenarios: <span class="tag tag-amber">Heatwave</span>, <span class="tag tag-cyan">Monsoon</span>, or <span class="tag tag-rose">Cloudburst Event</span>.</td>
+              <td><strong>☀️ Dry Fallow (Heatwave)</strong></td>
+              <td><span class="code-span">0.00 mm</span></td>
+              <td><span class="code-span">0.00 t/ha/yr</span></td>
+              <td>Sookha aur tez dhoop. Zameen mein koi runoff nahi hota, topsoil loss zero ho jata hai (Safe).</td>
+            </tr>
+            <tr>
+              <td><strong>⛈️ Cyclonic Storm (Heavy)</strong></td>
+              <td><span class="code-span">64.50 mm</span></td>
+              <td><span class="code-span">11.20 t/ha/yr</span></td>
+              <td>Continuous cyclone downpour. Zameen saturation point cross kar leti hai, moderate to severe triage.</td>
             </tr>
           </tbody>
         </table>
@@ -547,78 +553,77 @@ const htmlContent = `<!DOCTYPE html>
       <!-- Doodle Pro Tip Box -->
       <div class="doodle-box">
         <div class="doodle-title" style="color: #f59e0b;">
-          ✎ Live Try Karke Dekhein! <span class="doodle-tag">~ Sidebar Controls</span>
+          ✎ Video Mein Dekho! <span class="doodle-tag">~ Live Weather Changes</span>
         </div>
-        <p style="font-size: 7.5pt; color: #fde68a;">
-          Sidebar mein jaakar <strong>"⚡ Cloudburst Event (Extreme)"</strong> chuniye! Aap dekhenge ki Card 1 turant 92mm baarish dikhayega aur Card 3 mein Topsoil Detachment red ho kar <strong>"▲ Severe Detachment Breach"</strong> ka emergency warning de dega!
+        <p style="font-size: 7.2pt; color: #fde68a;">
+          Video mein humne pehle <strong>Bhopal</strong> select kiya, fir Date ka month change kiya, fir <strong>"Cloudburst Event"</strong> chun kar cards ko <strong>92mm rain</strong> aur red alert hote dikhaya, aur fir <strong>"Dry Fallow"</strong> karke 0mm safe state dikhaya!
         </p>
       </div>
     </div>
 
     <div class="doc-footer">
-      <div>EcoVision AI Documentation • Page 2: Header & Bento Grid</div>
+      <div>EcoVision AI Documentation • Page 2: Date Engine & Atmospheric Profiles</div>
       <div>Page 2 of 7</div>
     </div>
   </div>
 
-  <!-- ================= PAGE 3: TAB 1 - GEOSPATIAL RADAR ================= -->
+  <!-- ================= PAGE 3: TAB 1 - GEOSPATIAL RADAR & SCROLL ================= -->
   <div class="page">
     <div class="doc-header">
       <div class="brand">
-        <span>🗺️</span> Feature Suite 2: Tab 1 — Geospatial Catchment Radar
+        <span>🗺️</span> Feature Suite 2: Tab 1 — Geospatial Radar & Live Telemetry Stream
       </div>
       <div class="badge">Spatial Analytics</div>
     </div>
 
     <div class="content">
-      <div class="card" style="padding: 7px 11px;">
+      <div class="card" style="padding: 6px 10px;">
         <h2>Raisen Catchment 3D Watershed Radar & Regional Stream</h2>
-        <p style="font-size: 7.8pt; color: #94a3b8; margin-top: 1px;">
+        <p style="font-size: 7.5pt; color: #94a3b8; margin-top: 1px;">
           Interactive spatial visualization combining polygon GeoJSON catchment boundaries, glowing station markers, and real-time regional telemetry stream.
         </p>
       </div>
 
       <!-- Screenshot Frame -->
-      <div class="screenshot-frame" style="height: 98mm;">
+      <div class="screenshot-frame" style="height: 94mm;">
         <img src="${b64Tab1Spatial}" alt="Geospatial Catchment Radar" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
 
       <!-- HINGLISH DOODLE STICKY NOTE -->
       <div class="sticky-note">
         <strong>🗺️ Map Aur Table Ka Asli Fundaa (Hinglish Notes):</strong><br>
-        Yahan par aap poore Raisen aur Bhopal district ke 8 tehsils ko map pe ek sath dekh sakte ho:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
-          <li><strong>Glowing Pins (Bhopal, Raisen, Bareli, etc.):</strong> Pin ka rang batata hai ki uss area mein mitti katan ka kitna khatra hai (Green = Safe, Yellow = Moderate, Red = Severe).</li>
-          <li><strong>Golden Star Marker:</strong> Jis tehsil ko aapne sidebar se chuna hai, wo map par alag se <strong>★ ACTIVE OBSERVATORY</strong> ban kar chamakta hai.</li>
-          <li><strong>Hovering Mouse Magic:</strong> Kisi bhi station par mouse le jao, turant ek card khulega jo uss station ki baarish, dhalan (slope), aur mitti ka loss batayega.</li>
-          <li><strong>Regional Telemetry Stream:</strong> Map ke neeche ek real-time table hai jo sabhi 8 tehsils ka data compare karta hai.</li>
+        Jab aap Tab 1 khol kar neeche scroll karte hain, yeh 3 cheezein step-by-step samne aati hain:
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
+          <li><strong>1. 3D Watershed Radar (Map):</strong> Bhopal, Raisen, Bareli, Begumganj ke glowing pins dikhte hain. Golden Star Pin aapki active tehsil ko mark karta hai. Pin par mouse le jane se instant tooltip aati hai!</li>
+          <li><strong>2. Active Node Dossier (Scroll Level 1):</strong> Map ke theek neeche selected tehsil ki zameen ki kundli aati hai — GPS Coordinates, Topography Dhalan (<code class="code-span">LS = 2.10</code>), aur Mitti ki Pakad (<code class="code-span">K = 0.31 SI</code>).</li>
+          <li><strong>3. Regional Telemetry Stream (Scroll Level 2):</strong> Poore page ke bottom par ek live table hai jo sabhi 8 tehsils ki baarish, kinetic energy (R), aur soil loss (A) ko compare karti hai!</li>
         </ul>
       </div>
 
       <!-- Dossier Breakdown -->
       <div class="doodle-box-green">
         <div class="doodle-title" style="color: #10b981;">
-          📌 Active Node Dossier — Zameen Ki Kundli <span class="doodle-tag">~ Station Metrics</span>
+          📌 Scroll Architecture — Tab 1 Mein Kaise Ghumein? <span class="doodle-tag">~ Viewport Tour</span>
         </div>
-        <div class="grid-3" style="margin-top: 3px; font-size: 7.2pt;">
-          <div style="background: rgba(15,23,42,0.8); padding: 5px 7px; border-radius: 4px;">
-            <strong style="color: #38bdf8;">GPS Coordinates:</strong><br>
-            23.3315°N, 77.7831°E (Raisen HQ)
+        <div class="grid-3" style="margin-top: 2px; font-size: 7pt;">
+          <div style="background: rgba(15,23,42,0.8); padding: 4px 6px; border-radius: 4px;">
+            <strong style="color: #38bdf8;">Top: 3D Radar Map</strong><br>
+            Pin hovering + GeoJSON borders
           </div>
-          <div style="background: rgba(15,23,42,0.8); padding: 5px 7px; border-radius: 4px;">
-            <strong style="color: #f59e0b;">Topography (LS):</strong><br>
-            2.10 (Pahadi dhalan ki lambai aur angle)
+          <div style="background: rgba(15,23,42,0.8); padding: 4px 6px; border-radius: 4px;">
+            <strong style="color: #f59e0b;">Mid: Node Dossier</strong><br>
+            LS=2.10, K=0.31 SI, SYNCED Tag
           </div>
-          <div style="background: rgba(15,23,42,0.8); padding: 5px 7px; border-radius: 4px;">
-            <strong style="color: #10b981;">Soil Erodibility (K):</strong><br>
-            0.31 SI (Black cotton soil ki pakad)
+          <div style="background: rgba(15,23,42,0.8); padding: 4px 6px; border-radius: 4px;">
+            <strong style="color: #10b981;">Bottom: Telemetry Table</strong><br>
+            All 8 tehsils ranked live
           </div>
         </div>
       </div>
     </div>
 
     <div class="doc-footer">
-      <div>EcoVision AI Documentation • Page 3: Geospatial Catchment Radar</div>
+      <div>EcoVision AI Documentation • Page 3: Geospatial Radar & Regional Table</div>
       <div>Page 3 of 7</div>
     </div>
   </div>
@@ -633,43 +638,42 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="content">
-      <div class="card" style="padding: 7px 11px;">
+      <div class="card" style="padding: 6px 10px;">
         <h2>Autoregressive 7-Day Forecast & What-If Stress-Test Sandbox</h2>
-        <p style="font-size: 7.8pt; color: #94a3b8; margin-top: 1px;">
+        <p style="font-size: 7.5pt; color: #94a3b8; margin-top: 1px;">
           Multi-horizon rainfall trajectory coupled with interactive sensitivity sliders enabling researchers to simulate conservation interventions and extreme storm shocks.
         </p>
       </div>
 
       <!-- Screenshot Frame -->
-      <div class="screenshot-frame" style="height: 98mm;">
+      <div class="screenshot-frame" style="height: 94mm;">
         <img src="${b64Tab2Trajectory}" alt="7-Day Trajectory and What-If Sandbox" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
 
       <!-- HINGLISH DOODLE STICKY NOTE -->
       <div class="sticky-note-pink">
         <strong>⚡ 7-Day Graph Aur Tufaan Simulator Ka Fundaa (Hinglish Notes):</strong><br>
-        Aksar kisaan aur officer poochte hain: "Bhai kal aur parson kya hoga?" Yeh tab uska jawab deta hai:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
-          <li><strong>Blue Bars (Rainfall):</strong> Aane wale 7 dino mein har din kitne mm baarish hogi (e.g. Mon 28mm, Tue 15mm, etc.).</li>
-          <li><strong>Red Line (Soil Loss):</strong> Baarish ke hisaab se kitni mitti bhati jayegi. Agar baarish ka bar bada hoga, toh red line bhi upar chadh jayegi!</li>
-          <li><strong>What-If Slider (Tufaan Simulator):</strong> Yeh is dashboard ka sabse zabardast tool hai! Slider ko drag karke 120mm ya 200mm baarish set karo, neeche turant live result aayega ki zameen bachegi ya <strong>CRITICAL EROSION COLLAPSE</strong> ho jayega!</li>
-          <li><strong>Slope Slider (LS):</strong> Agar pahad ka slope 1.8 se badhakar 3.5 ho jaye, toh mitti 3 guna tezi se behne lagti hai.</li>
+        Tab 2 mein jab aap scroll karte hain, toh do zabardast interactive tools milte hain:
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
+          <li><strong>1. 7-Day Trajectory Graph (Scroll Level 1):</strong> Blue Bars batate hain ki aane wale 7 dino mein har din kitne mm baarish hogi. Red Line batati hai ki uss baarish se mitti kitni bhati jayegi. Mouse hover karne par har din ka exact data popup hota hai!</li>
+          <li><strong>2. What-If Cloudburst Downpour Slider (Scroll Level 2):</strong> Slider ko pakad kar 120mm ya 150mm par kheencho! Neeche turant card ka rang laal ho kar warning aayegi: <strong style="color:#be123c;">CRITICAL EROSION COLLAPSE</strong>!</li>
+          <li><strong>3. Slope Slider (LS Factor):</strong> Agar pahadi khet ka dhalan 1.8 se badhkar 3.5 ho jaye, toh mitti 3x tezi se bhati hai.</li>
         </ul>
       </div>
 
       <!-- Interactive Sandbox Box -->
       <div class="doodle-box">
         <div class="doodle-title" style="color: #f59e0b;">
-          💡 Try It In The App! <span class="doodle-tag">~ Sliders Drag Karke Dekho</span>
+          💡 Scroll Karke Sliders Dekho! <span class="doodle-tag">~ Video Mein Shown</span>
         </div>
-        <p style="font-size: 7.5pt; color: #fde68a;">
-          Tab 2 mein scroll karke <strong>"Simulate Cloudburst Downpour (mm)"</strong> slider ko right drag karke 150mm karo. Aap dekhenge ki estimated topsoil erosion <strong>32.4 tons/ha/year</strong> cross kar jayega aur card ka border laal ho jayega!
+        <p style="font-size: 7.2pt; color: #fde68a;">
+          Video mein humne Tab 2 khol kar pehle chart par mouse hover kiya, fir neeche scroll karke <strong>"Simulate Cloudburst Downpour (mm)"</strong> slider ko drag karke live soil erosion collapse calculate hote dikhaya hai!
         </p>
       </div>
     </div>
 
     <div class="doc-footer">
-      <div>EcoVision AI Documentation • Page 4: 7-Day Trajectory & What-If</div>
+      <div>EcoVision AI Documentation • Page 4: 7-Day Trajectory & What-If Sliders</div>
       <div>Page 4 of 7</div>
     </div>
   </div>
@@ -684,15 +688,15 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="content">
-      <div class="card" style="padding: 7px 11px;">
+      <div class="card" style="padding: 6px 10px;">
         <h2>Game-Theoretic TreeSHAP Attribution & Algorithmic Receipts</h2>
-        <p style="font-size: 7.8pt; color: #94a3b8; margin-top: 1px;">
+        <p style="font-size: 7.5pt; color: #94a3b8; margin-top: 1px;">
           Local waterfall explanations and global feature attribution ensuring full compliance with AI transparency and auditability standards.
         </p>
       </div>
 
       <!-- Screenshot Frame -->
-      <div class="screenshot-frame" style="height: 94mm;">
+      <div class="screenshot-frame" style="height: 90mm;">
         <img src="${b64Tab3TreeSHAP}" alt="TreeSHAP Receipts and Beeswarm" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
 
@@ -700,27 +704,27 @@ const htmlContent = `<!DOCTYPE html>
       <div class="sticky-note">
         <strong>🧾 TreeSHAP Ka Asli Matlab: AI Ka Pakka Bill / Receipt (Hinglish Notes):</strong><br>
         Aksar log sochte hain ki Machine Learning ek <em>"Black Box"</em> (kaala dabba) hai jahan andar kya ho raha hai kisi ko nahi pata. Par TreeSHAP ek ek pie ka hisaab deta hai:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
           <li><strong>Baseline (Base Value):</strong> Raisen ki aam dino ki average baarish (e.g. 2.45 mm).</li>
           <li><strong>Green Bar (+ Impact):</strong> Mausam ke wo clues jinhone baarish badhayi (jaise pichle 7 din ki nami aur hawa ka rukh).</li>
           <li><strong>Red Bar (- Impact):</strong> Wo factors jinhone baarish ko kam kiya (jaise tez dhoop ya dry heatwave).</li>
-          <li><strong>Net Output:</strong> Base Value + Saare Clues = Final Forecasted Rain! Poora hisaab receipt ki tarah clear hai!</li>
+          <li><strong>Global Beeswarm (Scroll Down):</strong> Neeche scroll karne par 1,000 instances ka Beeswarm chart dikhta hai jo prove karta hai ki 7-day rolling rain sabse bada governing factor hai.</li>
         </ul>
       </div>
 
       <!-- Global Insights Doodle Box -->
       <div class="doodle-box-cyan">
         <div class="doodle-title" style="color: #38bdf8;">
-          🌐 Global Beeswarm Graph — 1000 Dino Ka Sabut <span class="doodle-tag">~ Model Insights</span>
+          🌐 Scroll Down Karke Beeswarm Plot Dekhein! <span class="doodle-tag">~ Video Walkthrough</span>
         </div>
-        <p style="font-size: 7.5pt; color: #cbd5e1;">
-          Neeche scroll karne par Beeswarm plot dikhta hai. Isse yeh saaf saabit hota hai ki <strong>"Rolling Mean 7" (pichle 7 din ki baarish)</strong> sabse bada clue hai jo 42% prediction tay karta hai. Iska matlab: agar pichle hafte tez baarish hui thi, toh agle tufaan mein mitti behne ka khatra double ho jata hai!
+        <p style="font-size: 7.2pt; color: #cbd5e1;">
+          Tab 3 mein jab aap scroll karte hain, upar local instance ka waterfall bar chart dikhta hai aur neeche scroll karne par pooray model ka <strong>Global TreeSHAP Beeswarm Plot</strong> aur <strong>Feature Importance Bar Chart</strong> dikhai deta hai!
         </p>
       </div>
     </div>
 
     <div class="doc-footer">
-      <div>EcoVision AI Documentation • Page 5: TreeSHAP Explainability Receipts</div>
+      <div>EcoVision AI Documentation • Page 5: TreeSHAP Receipts & Beeswarm</div>
       <div>Page 5 of 7</div>
     </div>
   </div>
@@ -735,23 +739,23 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="content">
-      <div class="card" style="padding: 7px 11px;">
+      <div class="card" style="padding: 6px 10px;">
         <h2>RUSLE Physical Erosion Triage & Farmer Advisory Bulletin</h2>
-        <p style="font-size: 7.8pt; color: #94a3b8; margin-top: 1px;">
+        <p style="font-size: 7.5pt; color: #94a3b8; margin-top: 1px;">
           Deterministic soil conservation physics, dynamic dial gauge, and automated agricultural engineering advisory bulletin.
         </p>
       </div>
 
       <!-- Screenshot Frame -->
-      <div class="screenshot-frame" style="height: 74mm;">
+      <div class="screenshot-frame" style="height: 70mm;">
         <img src="${b64Tab4Rusle}" alt="RUSLE Soil Physics and Gauge" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
 
       <!-- HINGLISH DOODLE STICKY NOTE -->
       <div class="sticky-note-cyan">
         <strong>🌾 Mitti Bachao Formula & Speedometer Ka Fundaa (Hinglish Notes):</strong><br>
-        Tab 4 mein physical science aur kisaano ke liye live salah hai:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
+        Tab 4 mein physical science aur kisaano ke liye live field advice hai:
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
           <li><strong>Speedometer Gauge:</strong> Bike ke speedometer jaisa gauge meter dikhata hai ki kitne ton mitti beh rahi hai. Agar needle green zone (0-5) mein hai toh safe hai. Agar needle red zone (20+) mein gayi toh mitti khatam ho jayegi!</li>
           <li><strong>RUSLE Formula (A = R &times; K &times; LS &times; C &times; P):</strong>
             <br>&bull; <strong>R:</strong> Baarish ka thappad (Rain kinetic force)
@@ -767,12 +771,12 @@ const htmlContent = `<!DOCTYPE html>
         <div class="doodle-title" style="color: #10b981;">
           🌱 Kisaan Bhaiyo Ke Liye Live Salah (Farmer Advisory Bulletin) <span class="doodle-tag">~ Field Actions</span>
         </div>
-        <div class="grid-2" style="font-size: 7.2pt; margin-top: 3px;">
-          <div style="background: rgba(15,23,42,0.8); padding: 5px 8px; border-radius: 4px;">
+        <div class="grid-2" style="font-size: 7pt; margin-top: 2px;">
+          <div style="background: rgba(15,23,42,0.8); padding: 4px 7px; border-radius: 4px;">
             <strong style="color: #f59e0b;">⚠️ Baarish Ke Alert Par:</strong><br>
             Tez baarish se 24 ghante pehle khet mein chemical khad (fertilizer) mat daalein, warna paani sab baha le jayega aur nadi gandi ho jayegi!
           </div>
-          <div style="background: rgba(15,23,42,0.8); padding: 5px 8px; border-radius: 4px;">
+          <div style="background: rgba(15,23,42,0.8); padding: 4px 7px; border-radius: 4px;">
             <strong style="color: #10b981;">🛡️ Mitti Rokne Ka Upay:</strong><br>
             Dhalan wale khet ke kinaare <strong>Vetiver Ghaas (Khus)</strong> lagayein aur patthar ki medh (stone bunds) banayein taaki mitti khet mein hi ruki rahe.
           </div>
@@ -781,7 +785,7 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="doc-footer">
-      <div>EcoVision AI Documentation • Page 6: RUSLE Soil Physics & Farmer Bulletin</div>
+      <div>EcoVision AI Documentation • Page 6: RUSLE Physics & Farmer Bulletin</div>
       <div>Page 6 of 7</div>
     </div>
   </div>
@@ -796,57 +800,57 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="content">
-      <div class="card" style="padding: 7px 11px;">
+      <div class="card" style="padding: 6px 10px;">
         <h2>Walkthrough Video Feature Index & Evaluation Roadmap</h2>
-        <p style="font-size: 7.8pt; color: #94a3b8; margin-top: 1px;">
+        <p style="font-size: 7.5pt; color: #94a3b8; margin-top: 1px;">
           Minute-by-minute index correlating scenes in EcoVision_AI_Walkthrough.mp4 directly to platform components for examiners and researchers.
         </p>
       </div>
 
       <!-- Walkthrough Video Timestamp Index Table -->
       <div class="card" style="border: 1px solid rgba(56, 189, 248, 0.3);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
           <h3 style="color: #38bdf8;">Video Feature Index (EcoVision_AI_Walkthrough.mp4)</h3>
-          <span class="tag tag-emerald">Duration: 74 Seconds • 1440x900 H.264 MP4</span>
+          <span class="tag tag-emerald">Duration: 85 Seconds (1m 25s) • 1440x900 H.264 MP4</span>
         </div>
         <table>
           <thead>
             <tr>
               <th style="width: 75px;">Timestamp</th>
               <th style="width: 140px;">Feature Demonstrated</th>
-              <th>Interactive Actions & UI Elements Captured in Walkthrough</th>
+              <th>Interactive Actions, Scrolling & UI Elements Captured in Walkthrough</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span class="code-span">00:00 - 00:14</span></td>
+              <td><span class="code-span">00:00 - 00:12</span></td>
               <td><strong>Command Header & Bento Grid</strong></td>
               <td>Continuous telemetry ticker, Active Prediction Engine stats, and smooth mouse hovers across all 4 Bento KPI cards (Precipitation, Erosivity R, Soil Loss A, and ICAR Hazard Tier).</td>
             </tr>
             <tr>
-              <td><span class="code-span">00:14 - 00:30</span></td>
-              <td><strong>Sidebar & Weather Generators</strong></td>
-              <td>Switching observatory stations across the 8 tehsils, triggering the Atmospheric Profile generator (Cyclonic Storm mode), and observing dynamic Bento card recalculations.</td>
+              <td><span class="code-span">00:12 - 00:40</span></td>
+              <td><strong>Sidebar: Tehsil, Date & Weather</strong></td>
+              <td>Switching station to Bhopal, changing forecast month, triggering Cloudburst Event (cards jump to 92mm rain & red alert), switching to Dry Fallow (cards drop to 0mm safe), and resetting.</td>
             </tr>
             <tr>
-              <td><span class="code-span">00:30 - 00:50</span></td>
-              <td><strong>Tab 1: Watershed Radar</strong></td>
-              <td>Switching to Tab 1, exploring the Raisen-Bhopal 3D catchment radar, hovering over glowing station pins (Bhopal, Bareli, Raisen), reviewing Active Node Dossier and Regional Telemetry table.</td>
+              <td><span class="code-span">00:40 - 01:05</span></td>
+              <td><strong>Tab 1: Radar & Full Scroll</strong></td>
+              <td>Switching to Tab 1, smoothly scrolling down to Watershed Map, hovering over glowing pins, smoothly scrolling down to Active Node Dossier and Regional Telemetry table, and scrolling back up.</td>
             </tr>
             <tr>
-              <td><span class="code-span">00:50 - 01:05</span></td>
+              <td><span class="code-span">01:05 - 01:15</span></td>
               <td><strong>Tab 2: Trajectory & What-If</strong></td>
-              <td>Switching to Tab 2, examining the 7-day autoregressive rainfall curve with dual-axis soil loss line, hovering over chart bars, and exploring the What-If Cloudburst & Slope Simulator.</td>
+              <td>Switching to Tab 2, smoothly scrolling to 7-day trajectory chart, hovering across bars/lines, scrolling down to What-If Climate Shock Simulator, and interacting with Cloudburst slider.</td>
             </tr>
             <tr>
-              <td><span class="code-span">01:05 - 01:10</span></td>
+              <td><span class="code-span">01:15 - 01:20</span></td>
               <td><strong>Tab 3: TreeSHAP Receipts</strong></td>
-              <td>Switching to Tab 3, review of model mathematical additivity ticker, inspecting the horizontal TreeSHAP waterfall attribution bar chart, and scrolling to Global Beeswarm summary plot.</td>
+              <td>Switching to Tab 3, smoothly scrolling to TreeSHAP waterfall bar chart & itemized table, and scrolling down to Global Beeswarm summary plot and feature importance chart.</td>
             </tr>
             <tr>
-              <td><span class="code-span">01:10 - 01:14</span></td>
-              <td><strong>Tab 4: RUSLE Soil Physics</strong></td>
-              <td>Switching to Tab 4, reviewing dynamic soil loss dial gauge, examining Remediation Dispatch protocol, and reading the practical Farmer Advisory Bulletin.</td>
+              <td><span class="code-span">01:20 - 01:25</span></td>
+              <td><strong>Tab 4: RUSLE & Grand Vista</strong></td>
+              <td>Switching to Tab 4, smoothly scrolling to Soil Loss dial gauge and Farmer Advisory Bulletin, and smoothly scrolling back up to top grand vista for closing shot.</td>
             </tr>
           </tbody>
         </table>
@@ -856,16 +860,16 @@ const htmlContent = `<!DOCTYPE html>
       <div class="sticky-note">
         <strong>🎯 Final Reviewer / Teacher / Evaluator Guide (Hinglish):</strong><br>
         Agar koi evaluator ya teacher aapse poochhe ki <strong>"Is project mein kya special hai?"</strong>, toh yeh 3 baatein zaroor batayein:
-        <ul style="margin-left: 14px; margin-top: 3px; line-height: 1.35;">
-          <li><strong>1. No Blind Predictions:</strong> Yeh sirf baarish predict nahi karta, balki kisaan ke khet ki mitti katan (soil loss) ka physical formula (RUSLE) se real-world impact batata hai.</li>
+        <ul style="margin-left: 14px; margin-top: 2px; line-height: 1.3;">
+          <li><strong>1. Real Physics & Real Weather:</strong> Sirf hawa mein baarish predict nahi karta, balki kisaan ke khet ki mitti katan (soil loss) ka physical formula (RUSLE) se real-world impact batata hai.</li>
           <li><strong>2. Complete Explainability (TreeSHAP):</strong> Har prediction ke peeche ka reason clear hai (Game Theory Shapley values), jo responsible AI ke PhD standards ko satisfy karta hai.</li>
-          <li><strong>3. Live Cloud Web App:</strong> Project sirf Jupyter notebook ya code file nahi hai—yeh Render cloud par 24/7 live deployed hai aur poora interactive hai!</li>
+          <li><strong>3. Live Cloud Web App:</strong> Render cloud par 24/7 live deployed hai aur poora interactive hai!</li>
         </ul>
       </div>
 
       <!-- Quick Links Card -->
       <div class="card" style="border-left: 4px solid #38bdf8;">
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 7.2pt;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 7pt;">
           <div>
             <strong>Live Deployed Application:</strong> <a href="https://nitika-ma-am.onrender.com/" target="_blank">https://nitika-ma-am.onrender.com/</a>
           </div>

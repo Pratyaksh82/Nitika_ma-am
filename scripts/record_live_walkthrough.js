@@ -1,7 +1,7 @@
 /**
  * EcoVision AI • High-Definition Interactive MP4 Walkthrough Video Recorder
- * Uses Chrome DevTools Protocol (CDP) Screencast piped to FFmpeg (h264_mf)
- * Records a detailed ~100-second tour showing EVERY element, tab, slider, and feature.
+ * Truly scrolls the Streamlit main viewport (#stMain) smoothly with requestAnimationFrame
+ * Interacts with date picker, atmospheric profile generator, all 4 tabs, sliders, and maps.
  */
 
 const puppeteer = require('puppeteer-core');
@@ -20,6 +20,31 @@ const OUTPUT_MP4 = path.join(OUTPUT_DIR, 'EcoVision_AI_Walkthrough.mp4');
 const ROOT_MP4 = path.resolve('EcoVision_AI_Walkthrough.mp4');
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function smoothScrollEl(page, targetY, durationMs = 1500) {
+  await page.evaluate((target, duration) => {
+    return new Promise((resolve) => {
+      const el = document.getElementById('stMain') || document.querySelector('[data-testid="stMain"]');
+      if (!el) return resolve();
+      const start = el.scrollTop;
+      const diff = target - start;
+      const startTime = performance.now();
+
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+        el.scrollTop = start + diff * ease;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          resolve();
+        }
+      }
+      requestAnimationFrame(step);
+    });
+  }, targetY, durationMs);
+}
 
 async function recordWalkthrough() {
   console.log('[1/5] Launching Chrome Browser...');
@@ -73,7 +98,7 @@ async function recordWalkthrough() {
     '-framerate', String(FPS),
     '-i', '-',
     '-c:v', 'h264_mf',
-    '-b:v', '4M',
+    '-b:v', '4.5M',
     '-pix_fmt', 'yuv420p',
     '-movflags', '+faststart',
     OUTPUT_MP4
@@ -96,212 +121,253 @@ async function recordWalkthrough() {
   console.log('[5/5] Executing Detailed Feature Walkthrough Choreography...');
 
   try {
-    // ================= SCENE 1: Header & Bento Grid Overview (0s - 14s) =================
+    // ================= SCENE 1: Header & Bento Grid Overview (0s - 12s) =================
     console.log('  -> Scene 1: Command Header & Live Telemetry Bento Grid...');
     await sleep(2500);
 
     // Hover smoothly over each Bento Card
     const cards = await page.$$('.glass-card');
-    console.log(`Found ${cards.length} cards`);
     if (cards.length > 0) {
       const box0 = await cards[0].boundingBox();
       if (box0) await page.mouse.move(box0.x + box0.width / 2, box0.y + box0.height / 2);
-      await sleep(2000);
+      await sleep(1500);
     }
     if (cards.length > 1) {
       const box1 = await cards[1].boundingBox();
       if (box1) await page.mouse.move(box1.x + box1.width / 2, box1.y + box1.height / 2);
-      await sleep(2000);
+      await sleep(1500);
     }
     if (cards.length > 2) {
       const box2 = await cards[2].boundingBox();
       if (box2) await page.mouse.move(box2.x + box2.width / 2, box2.y + box2.height / 2);
-      await sleep(2000);
+      await sleep(1500);
     }
     if (cards.length > 3) {
       const box3 = await cards[3].boundingBox();
       if (box3) await page.mouse.move(box3.x + box3.width / 2, box3.y + box3.height / 2);
-      await sleep(2000);
+      await sleep(1500);
     }
 
-    // ================= SCENE 2: Sidebar Parameters & Atmospheric Profiles (14s - 30s) =================
-    console.log('  -> Scene 2: Sidebar Station Selection & Atmospheric Generator...');
+    // ================= SCENE 2: Sidebar Controls — Tehsil, Date & Weather Changes (12s - 40s) =================
+    console.log('  -> Scene 2: Sidebar Station Selection & Date Change & Weather Profile Shock...');
     await page.mouse.move(160, 200);
-    await sleep(1500);
+    await sleep(1000);
 
-    // Interact with Select Tehsil
+    // 1. Change Tehsil from Raisen to Bhopal
     const selectBoxes = await page.$$('div[data-baseweb="select"]');
     if (selectBoxes.length > 0) {
-      console.log('Clicking Tehsil selectbox...');
+      console.log('    Changing Tehsil to BHOPAL...');
       await selectBoxes[0].click();
-      await sleep(1500);
+      await sleep(1200);
       await page.keyboard.press('ArrowDown');
-      await sleep(600);
+      await sleep(500);
       await page.keyboard.press('ArrowDown');
-      await sleep(600);
+      await sleep(500);
       await page.keyboard.press('Enter');
-      await sleep(3000); // Allow Streamlit to re-run and show new station metrics
+      await sleep(2500); // Watch Bento cards update to Bhopal
     }
 
-    // Interact with Atmospheric Profile dropdown
-    if (selectBoxes.length > 1) {
-      console.log('Clicking Atmospheric Profile dropdown...');
-      await selectBoxes[1].click();
-      await sleep(1500);
+    // 2. Change Forecast Date (Month spinbutton from August to June)
+    console.log('    Changing Forecast Date month...');
+    const monthSpan = await page.$('span[data-type="month"]');
+    if (monthSpan) {
+      await monthSpan.click();
+      await sleep(500);
       await page.keyboard.press('ArrowDown');
-      await sleep(600);
-      await page.keyboard.press('Enter'); // Select Cyclonic Storm
-      await sleep(3500); // Watch numbers jump in Bento Grid!
+      await sleep(400);
+      await page.keyboard.press('ArrowDown');
+      await sleep(400);
+      await page.keyboard.press('Enter');
+      await sleep(2500); // Watch seasonal date change take effect
     }
 
-    // ================= SCENE 3: Tab 1 - Geospatial Catchment Radar & Telemetry (30s - 50s) =================
-    console.log('  -> Scene 3: Tab 1 — Geospatial Catchment Radar & Telemetry Stream...');
-    const tabs = await page.$$('[role="tab"]');
-    console.log(`Found ${tabs.length} tabs`);
+    // 3. Change Atmospheric Profile to Cloudburst Event (Extreme)
+    if (selectBoxes.length > 1) {
+      console.log('    Selecting Cloudburst Event (Extreme)...');
+      await selectBoxes[1].click();
+      await sleep(1200);
+      await page.keyboard.press('ArrowDown');
+      await sleep(500);
+      await page.keyboard.press('ArrowDown');
+      await sleep(500);
+      await page.keyboard.press('Enter');
+      await sleep(3500); // Watch rainfall jump to 92mm and cards turn RED!
 
+      // Hover over the red alert bento card
+      const alertCards = await page.$$('.glass-card');
+      if (alertCards.length > 2) {
+        const aBox = await alertCards[2].boundingBox();
+        if (aBox) await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+        await sleep(2000);
+      }
+
+      // Now switch to Dry Fallow (Heatwave) to show the contrast!
+      console.log('    Selecting Dry Fallow (Heatwave)...');
+      await selectBoxes[1].click();
+      await sleep(1000);
+      await page.keyboard.press('ArrowDown');
+      await sleep(400);
+      await page.keyboard.press('Enter');
+      await sleep(3000); // Watch metrics drop to 0mm and safe status!
+
+      // Reset back to Dynamic Monsoon
+      console.log('    Resetting to Dynamic Monsoon...');
+      await selectBoxes[1].click();
+      await sleep(1000);
+      await page.keyboard.press('ArrowUp');
+      await sleep(300);
+      await page.keyboard.press('ArrowUp');
+      await sleep(300);
+      await page.keyboard.press('ArrowUp');
+      await sleep(300);
+      await page.keyboard.press('Enter');
+      await sleep(2500);
+    }
+
+    // ================= SCENE 3: Tab 1 — Catchment Radar & Full Page Scroll (40s - 65s) =================
+    console.log('  -> Scene 3: Tab 1 — Geospatial Catchment Radar & Continuous Smooth Scroll...');
+    const tabs = await page.$$('[role="tab"]');
     if (tabs.length > 0) {
       await tabs[0].click();
       await sleep(1500);
     }
 
-    // Scroll to Map
-    await page.evaluate(() => window.scrollBy({ top: 380, behavior: 'smooth' }));
-    await sleep(3000);
-
-    // Hover across map locations
-    await page.mouse.move(680, 520);
-    await sleep(2000);
-    await page.mouse.move(780, 480);
-    await sleep(2000);
-    await page.mouse.move(620, 560);
-    await sleep(2000);
-
-    // Scroll down to Active Node Telemetry Dossier & Telemetry Table
-    await page.evaluate(() => window.scrollBy({ top: 400, behavior: 'smooth' }));
-    await sleep(3500);
-
-    // Hover over table rows
-    await page.mouse.move(650, 750);
+    // ACTUALLY SMOOTH SCROLL DOWN TO THE MAP IN #stMain!
+    console.log('    Smoothly scrolling down to Watershed Map...');
+    await smoothScrollEl(page, 450, 1800);
     await sleep(2500);
 
-    // ================= SCENE 4: Tab 2 - 7-Day Trajectory & What-If Sandbox (50s - 75s) =================
-    console.log('  -> Scene 4: Tab 2 — 7-Day Trajectory & What-If Cloudburst Sandbox...');
-    await page.evaluate(() => window.scrollTo({ top: 200, behavior: 'smooth' }));
+    // Hover across the map station pins
+    await page.mouse.move(680, 500);
+    await sleep(2000);
+    await page.mouse.move(780, 460);
+    await sleep(2000);
+    await page.mouse.move(620, 540);
+    await sleep(2000);
+
+    // ACTUALLY SMOOTH SCROLL DOWN TO DOSSIER & REGIONAL TELEMETRY STREAM TABLE!
+    console.log('    Smoothly scrolling down to Active Node Dossier & Telemetry Table...');
+    await smoothScrollEl(page, 950, 1800);
+    await sleep(3000);
+
+    // Hover over table rows
+    await page.mouse.move(650, 680);
+    await sleep(1500);
+    await page.mouse.move(650, 750);
+    await sleep(2000);
+
+    // Smooth scroll back to top of tabs
+    console.log('    Smoothly scrolling back up to Tabs...');
+    await smoothScrollEl(page, 0, 1500);
     await sleep(1500);
 
+    // ================= SCENE 4: Tab 2 — 7-Day Trajectory & What-If Sliders (65s - 90s) =================
+    console.log('  -> Scene 4: Tab 2 — 7-Day Trajectory Chart & What-If Cloudburst Sliders...');
     if (tabs.length > 1) {
-      console.log('Clicking Tab 2: 7-Day Trajectory & What-If...');
       await tabs[1].click();
-      await sleep(3000);
-
-      // Scroll to 7-day chart
-      await page.evaluate(() => window.scrollBy({ top: 180, behavior: 'smooth' }));
       await sleep(2500);
 
-      // Hover over chart data points
-      await page.mouse.move(580, 380);
-      await sleep(1500);
-      await page.mouse.move(720, 380);
-      await sleep(1500);
-      await page.mouse.move(860, 380);
-      await sleep(1500);
-
-      // Scroll down to What-If Sandbox
-      await page.evaluate(() => window.scrollBy({ top: 340, behavior: 'smooth' }));
+      // Smooth scroll down to 7-day trajectory chart
+      console.log('    Smoothly scrolling to 7-day trajectory chart...');
+      await smoothScrollEl(page, 280, 1500);
       await sleep(2500);
 
-      // Interact with Slider 1: Cloudburst Downpour
+      // Hover over forecast bars and soil loss line
+      await page.mouse.move(580, 420);
+      await sleep(1500);
+      await page.mouse.move(720, 420);
+      await sleep(1500);
+      await page.mouse.move(860, 420);
+      await sleep(1500);
+
+      // Smooth scroll down to What-If Sandbox
+      console.log('    Smoothly scrolling to What-If Climate Shock Simulator...');
+      await smoothScrollEl(page, 620, 1500);
+      await sleep(2500);
+
+      // Interact with Slider: Cloudburst Downpour
       const sliderThumbs = await page.$$('[role="slider"]');
-      console.log(`Found ${sliderThumbs.length} slider thumbs`);
       if (sliderThumbs.length > 0) {
-        const thumb0Box = await sliderThumbs[0].boundingBox();
-        if (thumb0Box) {
-          await page.mouse.move(thumb0Box.x + thumb0Box.width / 2, thumb0Box.y + thumb0Box.height / 2);
-          await sleep(800);
+        console.log('    Interacting with Cloudburst Downpour slider...');
+        const sBox = await sliderThumbs[0].boundingBox();
+        if (sBox) {
+          await page.mouse.move(sBox.x + sBox.width / 2, sBox.y + sBox.height / 2);
+          await sleep(600);
           await page.mouse.down();
-          await page.mouse.move(thumb0Box.x + 160, thumb0Box.y, { steps: 15 });
+          await page.mouse.move(sBox.x + 140, sBox.y, { steps: 15 });
           await page.mouse.up();
           await sleep(2500); // Watch simulation outcome recalculate!
         }
       }
 
-      // Interact with Slider 2: Topographic Slope (LS)
-      if (sliderThumbs.length > 1) {
-        const thumb1Box = await sliderThumbs[1].boundingBox();
-        if (thumb1Box) {
-          await page.mouse.move(thumb1Box.x + thumb1Box.width / 2, thumb1Box.y + thumb1Box.height / 2);
-          await sleep(800);
-          await page.mouse.down();
-          await page.mouse.move(thumb1Box.x + 100, thumb1Box.y, { steps: 12 });
-          await page.mouse.up();
-          await sleep(2500); // Watch critical erosion outcome update!
-        }
-      }
+      // Smooth scroll back up to tabs
+      await smoothScrollEl(page, 0, 1500);
+      await sleep(1500);
     }
 
-    // ================= SCENE 5: Tab 3 - TreeSHAP Explainability Receipts (75s - 98s) =================
-    console.log('  -> Scene 5: Tab 3 — TreeSHAP Explainability Receipts & Beeswarm...');
-    await page.evaluate(() => window.scrollTo({ top: 200, behavior: 'smooth' }));
-    await sleep(1500);
-
+    // ================= SCENE 5: Tab 3 — TreeSHAP Receipts & Beeswarm (90s - 115s) =================
+    console.log('  -> Scene 5: Tab 3 — TreeSHAP Receipts & Global Beeswarm Plot...');
     if (tabs.length > 2) {
-      console.log('Clicking Tab 3: TreeSHAP Explainability Receipt...');
       await tabs[2].click();
-      await sleep(3000);
-
-      // Scroll to Waterfall Plot & Factor Attribution
-      await page.evaluate(() => window.scrollBy({ top: 160, behavior: 'smooth' }));
       await sleep(2500);
 
-      // Hover over waterfall horizontal bars
-      await page.mouse.move(560, 360);
+      // Smooth scroll down to Waterfall Chart & Itemized Attribution Table
+      console.log('    Smoothly scrolling to TreeSHAP Waterfall & Table...');
+      await smoothScrollEl(page, 260, 1500);
+      await sleep(2500);
+
+      // Hover over waterfall bars
+      await page.mouse.move(560, 400);
       await sleep(1500);
-      await page.mouse.move(560, 420);
+      await page.mouse.move(560, 460);
       await sleep(1500);
 
-      // Hover over Itemized Table on right
-      await page.mouse.move(960, 360);
+      // Hover over table on the right
+      await page.mouse.move(960, 400);
       await sleep(2000);
 
-      // Scroll down to Global TreeSHAP Beeswarm Plot & Feature Importance
-      await page.evaluate(() => window.scrollBy({ top: 380, behavior: 'smooth' }));
+      // Smooth scroll down to Global Beeswarm Plot & Feature Importance
+      console.log('    Smoothly scrolling to Global Beeswarm & Feature Importance...');
+      await smoothScrollEl(page, 720, 1800);
       await sleep(3500);
 
       // Hover on beeswarm
       await page.mouse.move(600, 600);
       await sleep(2000);
+
+      // Smooth scroll back up to tabs
+      await smoothScrollEl(page, 0, 1500);
+      await sleep(1500);
     }
 
-    // ================= SCENE 6: Tab 4 - RUSLE Soil Physics & Interventions (98s - 120s) =================
+    // ================= SCENE 6: Tab 4 — RUSLE Soil Physics & Interventions (115s - 135s) =================
     console.log('  -> Scene 6: Tab 4 — RUSLE Soil Physics & Advisory Bulletin...');
-    await page.evaluate(() => window.scrollTo({ top: 200, behavior: 'smooth' }));
-    await sleep(1500);
-
     if (tabs.length > 3) {
-      console.log('Clicking Tab 4: RUSLE Soil Physics & Interventions...');
       await tabs[3].click();
-      await sleep(3000);
-
-      // Scroll to Gauge Indicator & Remediation Dispatch
-      await page.evaluate(() => window.scrollBy({ top: 160, behavior: 'smooth' }));
       await sleep(2500);
 
-      // Hover over gauge needle and threshold
-      await page.mouse.move(520, 360);
+      // Smooth scroll down to Gauge & Advisory Bulletin
+      console.log('    Smoothly scrolling to Soil Loss Gauge & Farmer Advisory...');
+      await smoothScrollEl(page, 280, 1500);
+      await sleep(2500);
+
+      // Hover over gauge indicator
+      await page.mouse.move(520, 420);
       await sleep(2000);
 
-      // Hover over Remediation Protocol and Farmer Advisory Bulletin
-      await page.mouse.move(960, 360);
+      // Hover over Remediation Dispatch & Farmer Bulletin
+      await page.mouse.move(960, 420);
       await sleep(2500);
 
-      await page.evaluate(() => window.scrollBy({ top: 200, behavior: 'smooth' }));
+      // Scroll slightly more down to full farmer advisory
+      await smoothScrollEl(page, 450, 1200);
       await sleep(2500);
+
+      // Smooth scroll back up to closing vista
+      console.log('    Smoothly scrolling back up to top grand vista...');
+      await smoothScrollEl(page, 0, 1800);
+      await sleep(3000);
     }
-
-    // ================= SCENE 7: Closing Grand Vista (120s - 126s) =================
-    console.log('  -> Scene 7: Smooth scroll back to top vista...');
-    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    await sleep(3500);
 
   } finally {
     clearInterval(frameInterval);
@@ -323,10 +389,9 @@ async function recordWalkthrough() {
     });
 
     if (fs.existsSync(OUTPUT_MP4)) {
-      // Copy to root as well
       fs.copyFileSync(OUTPUT_MP4, ROOT_MP4);
       const stats = fs.statSync(OUTPUT_MP4);
-      console.log(`✅ COMPLETE DETAILED VIDEO GENERATED:`);
+      console.log(`✅ VIDEO GENERATION SUCCESS:`);
       console.log(`   - ${OUTPUT_MP4} (${(stats.size / (1024 * 1024)).toFixed(2)} MB)`);
       console.log(`   - ${ROOT_MP4} (${(stats.size / (1024 * 1024)).toFixed(2)} MB)`);
     } else {
